@@ -1,0 +1,90 @@
+<form
+  class="form"
+  [formGroup]="form"
+  (submit)="submit()">
+
+  <div class="tui-form__row">
+    <tui-input
+      tuiTextfieldSize="s"
+      formControlName="name">
+      ФИО
+    </tui-input>
+
+    <div
+      *ngIf="getInvalid('name')"
+      class="invalid-input">
+      Поле обязательно для заполнения
+    </div>
+  </div>
+
+  <div
+    *tuiLet="items"
+    class="tui-form__row">
+
+    <tui-combo-box
+      tuiTextfieldSize="s"
+      formControlName="country"
+      [strict]="false"
+      [valueContent]="content"
+    >
+    Страна доставки
+      <tui-data-list-wrapper
+        *tuiDataList
+        [items]="items | tuiFilterByInput : matcher"
+        [itemContent]="content"
+      ></tui-data-list-wrapper>
+    </tui-combo-box>
+
+    <div
+      *ngIf="getInvalid('country')"
+      class="invalid-input">
+      Поле обязательно для заполнения
+    </div>
+  </div>
+
+  <div class="tui-form__row">
+    <tui-input
+      tuiTextfieldSize="s"
+      formControlName="address">
+      Адрес доставки
+    </tui-input>
+
+    <div
+      *ngIf="getInvalid('address')"
+      class="invalid-input">
+      Поле обязательно для заполнения
+    </div>
+  </div>
+
+  <div class="tui-form__row">
+    <tui-input
+      tuiTextfieldSize="s"
+      formControlName="email">
+      Email
+    </tui-input>
+    <div
+      *ngIf="getInvalid('email')"
+      class="invalid-input">
+      {{ emailError }}
+    </div>
+  </div>
+
+  <div class="tui-form__row">
+    <strong>К оплате:</strong> {{ formattedTotal }}
+  </div>
+
+  <div class="tui-form__row buttons">
+    <button
+      tuiButton
+      [disabled]="form.invalid"
+      class="tui-form__button"
+      size="s"
+      type="submit">
+      Оформить
+    </button>
+  </div>
+</form>
+
+<ng-template #content let-data>
+  <div>{{ data }}</div>
+</ng-template>

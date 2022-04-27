@@ -1,0 +1,24 @@
+<div class="container">
+  <div class="header">
+    Интернет-магазин
+  </div>
+
+  <div class="controls">
+    <tui-tabs [(activeItemIndex)]="activeTabIndex">
+      <button tuiTab>
+        Список товаров
+      </button>
+      <button tuiTab>
+        Корзина
+      </button>
+    </tui-tabs>
+
+    <div class="tab" *ngIf="activeTabIndex === 0">
+      <app-positions-list></app-positions-list>
+    </div>
+
+    <div class="tab" *ngIf="activeTabIndex === 1">
+      <app-cart></app-cart>
+    </div>
+  </div>
+</div>
