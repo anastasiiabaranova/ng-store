@@ -4,6 +4,7 @@ import { CartItemComponent } from './cart-item.component';
 import { TuiButtonModule, TuiHintModule, TuiTextfieldControllerModule } from '@taiga-ui/core';
 import { TuiBadgeModule, TuiInputModule, TuiInputNumberModule } from '@taiga-ui/kit';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { PricePipeModule } from '../price-pipe/price-pipe.module';
 
 
 
@@ -21,7 +22,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     TuiInputModule,
     TuiInputNumberModule,
     TuiTextfieldControllerModule,
-    TuiButtonModule
+    TuiButtonModule,
+    PricePipeModule
   ],
   exports: [
     CartItemComponent

@@ -5,7 +5,7 @@
     <tui-badge
       class="support-1"
       status="success"
-      [value]="formattedPrice"
+      [value]="this.position.price | formattedPrice : '€'"
       [hoverable]="true"
     ></tui-badge>
 

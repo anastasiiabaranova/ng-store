@@ -1,8 +1,8 @@
 import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { IPositionsApiService } from '../interfaces/IPositionsApiService';
-import { Position } from '../models/Position';
+import { IPositionsApiService } from '../../interfaces/IPositionsApiService';
+import { Position } from '../../models/Position';
 
 const host = 'http://localhost:3000/positions';
 

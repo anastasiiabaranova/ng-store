@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { CartComponent } from './cart.component';
 import { DeliveryFormModule } from '../delivery-form/delivery-form.module';
 import { CartItemModule } from '../cart-item/cart-item.module';
+import { PricePipeModule } from '../price-pipe/price-pipe.module';
 
 
 
@@ -13,7 +14,8 @@ import { CartItemModule } from '../cart-item/cart-item.module';
   imports: [
     CommonModule,
     CartItemModule,
-    DeliveryFormModule
+    DeliveryFormModule,
+    PricePipeModule
   ],
   exports: [
     CartComponent

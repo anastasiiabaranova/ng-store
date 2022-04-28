@@ -4,6 +4,7 @@ import { PositionComponent } from './position.component';
 import { TuiButtonModule, TuiHintModule, TuiTextfieldControllerModule } from '@taiga-ui/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TuiBadgeModule, TuiInputModule, TuiInputNumberModule } from '@taiga-ui/kit';
+import { PricePipeModule } from '../price-pipe/price-pipe.module';
 
 
 
@@ -20,7 +21,8 @@ import { TuiBadgeModule, TuiInputModule, TuiInputNumberModule } from '@taiga-ui/
     TuiInputNumberModule,
     TuiBadgeModule,
     TuiTextfieldControllerModule,
-    TuiButtonModule
+    TuiButtonModule,
+    PricePipeModule
   ],
   exports: [
     PositionComponent

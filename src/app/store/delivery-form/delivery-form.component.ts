@@ -1,21 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, Validators } from '@angular/forms';
-import { Observable, of, Subject } from 'rxjs';
-import { catchError, debounceTime, filter, startWith, switchMap } from 'rxjs/operators';
+import { Observable, Subject } from 'rxjs';
+import { debounceTime, filter, switchMap } from 'rxjs/operators';
 import { Country } from 'src/shared/models/Country';
 import { ExchangeRate } from 'src/shared/models/ExchangeRate';
-import { StoreService } from 'src/shared/services/store.service';
+import { CartService } from 'src/shared/services/cart.service';
+import { CountriesService } from 'src/shared/services/countries.service';
+import { ExchangeRatesService } from 'src/shared/services/exchange-rates.service';
 
 function isInvalid(input: AbstractControl | null): boolean {
   return input !== null && input.invalid && input.touched;
-}
-
-class CountryComboboxItem {
-  constructor(readonly country: Country) { }
-
-  toString(): string {
-    return this.country.name;
-  }
 }
 
 @Component({
@@ -37,7 +31,7 @@ export class DeliveryFormComponent implements OnInit {
     currency: 'EUR'
   };
 
-  items: CountryComboboxItem[] = [];
+  countries: Country[] = [];
 
   readonly exchangeRateSearch$ = new Subject<Country>();
 
@@ -50,22 +44,24 @@ export class DeliveryFormComponent implements OnInit {
     )
   );
 
-  readonly matcher = (country: CountryComboboxItem, search: string) =>
-    country.toString().toLowerCase().includes(search.toLowerCase());
+  readonly matcher = (country: Country, search: string) =>
+    country.name.toLowerCase().includes(search.toLowerCase());
+  
+  readonly stringify = (country: Country) => country.name;
 
   constructor(
     private fb: FormBuilder,
-    private storeService: StoreService
+    private cartService: CartService,
+    private countriesService: CountriesService,
+    private exchangeRatesService: ExchangeRatesService
   ) { }
 
   ngOnInit(): void {
-    this.items = this.storeService.countries.map(
-      c => new CountryComboboxItem(c)
-    );
+    this.countries = this.countriesService.countries;
 
     this.form.get('country')?.valueChanges.subscribe((value) => {
-      if (value?.country) {
-        this.exchangeRateSearch$.next(value.country);
+      if (value?.currency) {
+        this.exchangeRateSearch$.next(value);
       }
     });
 
@@ -74,9 +70,8 @@ export class DeliveryFormComponent implements OnInit {
     });
   }
 
-  get formattedTotal(): string {
-    return `${(this.storeService.total * this.exchangeRate.rate).toFixed(2)
-      } ${this.exchangeRate.currency}`;
+  get totalInCurrency(): number {
+    return this.cartService.total * this.exchangeRate.rate;
   }
 
   get emailError(): string | undefined {
@@ -100,7 +95,7 @@ export class DeliveryFormComponent implements OnInit {
   }
 
   requestExchangeRates(to: string): Observable<ExchangeRate> {
-    return this.storeService.getExchangeRate(to);
+    return this.exchangeRatesService.getExchangeRate(to);
   }
 
 }

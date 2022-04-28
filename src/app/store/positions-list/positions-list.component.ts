@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { StoreService } from 'src/shared/services/store.service';
+import { PositionsService } from 'src/shared/services/positions.service';
 
 @Component({
   selector: 'app-positions-list',
@@ -8,7 +8,7 @@ import { StoreService } from 'src/shared/services/store.service';
 })
 export class PositionsListComponent {
 
-  constructor(public storeService: StoreService) {
+  constructor(public positionsService: PositionsService) {
   }
 
 }

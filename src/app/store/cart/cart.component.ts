@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { StoreService } from 'src/shared/services/store.service';
+import { CartService } from 'src/shared/services/cart.service';
 
 @Component({
   selector: 'app-cart',
@@ -7,6 +7,6 @@ import { StoreService } from 'src/shared/services/store.service';
   styleUrls: ['./cart.component.less']
 })
 export class CartComponent {
-  constructor(public storeService: StoreService) {
+  constructor(public cartService: CartService) {
   }
 }

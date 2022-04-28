@@ -18,20 +18,20 @@
   </div>
 
   <div
-    *tuiLet="items"
+    *tuiLet="countries"
     class="tui-form__row">
 
     <tui-combo-box
       tuiTextfieldSize="s"
       formControlName="country"
       [strict]="false"
-      [valueContent]="content"
+      [stringify]="stringify"
     >
     Страна доставки
       <tui-data-list-wrapper
         *tuiDataList
-        [items]="items | tuiFilterByInput : matcher"
-        [itemContent]="content"
+        [items]="countries | tuiFilterByInput : matcher"
+        [itemContent]="stringify | tuiStringifyContent"
       ></tui-data-list-wrapper>
     </tui-combo-box>
 
@@ -70,7 +70,7 @@
   </div>
 
   <div class="tui-form__row">
-    <strong>К оплате:</strong> {{ formattedTotal }}
+    <strong>К оплате:</strong> {{ totalInCurrency  | formattedPrice : exchangeRate.currency }}
   </div>
 
   <div class="tui-form__row buttons">
@@ -84,7 +84,3 @@
     </button>
   </div>
 </form>
-
-<ng-template #content let-data>
-  <div>{{ data }}</div>
-</ng-template>

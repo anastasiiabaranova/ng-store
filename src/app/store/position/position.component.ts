@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Position } from 'src/shared/models/Position';
-import { StoreService } from 'src/shared/services/store.service';
+import { CartService } from 'src/shared/services/cart.service';
 
 @Component({
   selector: 'app-position',
@@ -21,12 +21,8 @@ export class PositionComponent {
 
   constructor(
     private fb: FormBuilder,
-    public storeService: StoreService
+    public cartService: CartService
   ) { }
-
-  get formattedPrice(): string {
-    return `${this.position.price} €`;
-  }
 
   addPositionToCart(): void {
     const amount = this.form.get('amount')?.value;
@@ -35,6 +31,6 @@ export class PositionComponent {
       { amount }
     );
 
-    this.storeService.addToCart(result);
+    this.cartService.addToCart(result);
   }
 }

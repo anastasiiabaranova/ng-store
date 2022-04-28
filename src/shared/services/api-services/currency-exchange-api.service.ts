@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { from, Observable, of } from 'rxjs';
-import { ExchangeRate } from '../models/ExchangeRate';
+import { ExchangeRate } from '../../models/ExchangeRate';
 
 const url = 'http://api.exchangeratesapi.io/v1/latest?access_key=33048bd03c0c46a06b3d633f83eaf15d';
 

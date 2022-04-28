@@ -1,13 +1,13 @@
 <div class="positions-list">
   <app-cart-item
-    *ngFor="let cartItem of storeService.cart"
+    *ngFor="let cartItem of cartService.cartItems"
     [cartItem]="cartItem">
   </app-cart-item>
 </div>
 
 <div class="footer">
   <span class="caption">Итого:&nbsp;</span>
-  <strong>{{ storeService.total }} €</strong>
+  <strong>{{ cartService.total | formattedPrice : '€' }}</strong>
 </div>
 
 <app-delivery-form></app-delivery-form>
