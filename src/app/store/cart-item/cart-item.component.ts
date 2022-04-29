@@ -31,12 +31,12 @@ export class CartItemComponent implements OnInit, OnDestroy {
     amount.setValue(this.cartItem.amount);
 
     amount.valueChanges.pipe(
-      takeUntil(this.destroy$),
       filter(value => value !== null),
       debounceTime(200),
       switchMap(value =>
         this.updateCartItemAmount(value)
-      )
+      ),
+      takeUntil(this.destroy$)
     ).subscribe(() => {});
   }
 
