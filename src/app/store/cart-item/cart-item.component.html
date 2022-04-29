@@ -1,0 +1,36 @@
+<div class="container">
+  {{ cartItem.title }}
+
+  <div class="wrapper">
+    <tui-badge
+      class="support-1"
+      status="success"
+      [value]="this.cartItem.price | formattedPrice : '€'"
+      [hoverable]="true">
+    </tui-badge>
+
+    <form [formGroup]="form">
+      <tui-input-number
+        formControlName="amount"
+        tuiTextfieldSize="s"
+        [min]="1">
+        Кол-во
+      </tui-input-number>
+    </form>
+
+    <button
+      tuiIconButton
+      type="button"
+      appearance="icon"
+      icon="tuiIconCloseLarge"
+      size="xs"
+      (click)="removeItemFromCart()"
+      [tuiHint]="remove">
+    </button>
+
+  </div>
+</div>
+
+<ng-template #remove>
+  <div>Удалить из корзины</div>
+</ng-template>

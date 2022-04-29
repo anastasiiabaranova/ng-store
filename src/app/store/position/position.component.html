@@ -1,0 +1,37 @@
+<div class="container">
+  {{ position.title }}
+
+  <div class="wrapper">
+    <tui-badge
+      class="support-1"
+      status="success"
+      [value]="this.position.price | formattedPrice : '€'"
+      [hoverable]="true"
+    ></tui-badge>
+
+    <form class="add-to-cart-form" [formGroup]="form">
+      <tui-input-number
+        formControlName="amount"
+        tuiTextfieldSize="s"
+        [min]="1">
+        Кол-во
+      </tui-input-number>
+
+      <button
+        [disabled]="form.invalid"
+        tuiIconButton
+        type="submit"
+        appearance="icon"
+        icon="tuiIconPlus"
+        size="xs"
+        (click)="addPositionToCart()"
+        [tuiHint]="add">
+      </button>
+    </form>
+
+  </div>
+</div>
+
+<ng-template #add>
+  <div>Добавить в корзину</div>
+</ng-template>
