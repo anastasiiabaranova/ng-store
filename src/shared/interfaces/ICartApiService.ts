@@ -7,7 +7,7 @@ export const ICartApiServiceToken = new InjectionToken('ICartApiService');
 export interface ICartApiService {
   getAll(): Observable<CartItem[]>;
 
-  add(cartItem: CartItem): Observable<void>;
+  add(cartItem: CartItem): Observable<CartItem[]>;
 
   edit(cartItem: CartItem): Observable<void>
 

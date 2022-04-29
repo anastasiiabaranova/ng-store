@@ -16,8 +16,8 @@ export class CartApiService implements ICartApiService {
     return this.httpClient.get<CartItem[]>(host);
   }
 
-  add(cartItem: CartItem): Observable<void> {
-    return this.httpClient.post<void>(host, cartItem);
+  add(cartItem: CartItem): Observable<CartItem[]> {
+    return this.httpClient.post<CartItem[]>(host, cartItem);
   }
 
   edit(cartItem: CartItem): Observable<void> {

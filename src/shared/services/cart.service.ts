@@ -32,14 +32,8 @@ export class CartService {
   }
 
   addToCart(cartItem: CartItem): void {
-    this.cartApiService.add(cartItem).subscribe(() => {
-      const duplicateIndex = this._cartItems
-        .findIndex(item => item.id === cartItem.id);
-      if (duplicateIndex >= 0) {
-        this._cartItems[duplicateIndex].amount += cartItem.amount;
-      } else {
-        this._cartItems.push(cartItem);
-      }
+    this.cartApiService.add(cartItem).subscribe((newCartItems) => {
+      this._cartItems = newCartItems;
       this.updateTotal();
     });
   }
